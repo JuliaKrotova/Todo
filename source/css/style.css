@@ -1,0 +1,389 @@
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Medium.woff2") format("woff2"),
+    url("../fonts/Gilroy-Medium.woff") format("woff");
+  font-weight: 500;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Gilroy";
+  src: url("../fonts/Gilroy-Extrabold.woff2") format("woff2"),
+    url("../fonts/Gilroy-Extrabold.woff") format("woff");
+  font-weight: 800;
+  font-style: normal;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+*::after,
+*::before {
+  box-sizing: inherit;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-width: 320px;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+  line-height: 20px;
+  font-family: Gilroy, arial, sans-serif;
+  font-weight: 500;
+  font-style: normal;
+  letter-spacing: 0.01em;
+  color: #000000;
+  background-color: #ffffff;
+}
+
+main {
+  position: relative;
+}
+
+button,
+select {
+  cursor: pointer;
+}
+
+svg path {
+  fill: inherit;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  border: 0;
+  padding: 0;
+  white-space: nowrap;
+  word-wrap: normal;
+  clip: rect(0 0 0 0);
+  overflow: hidden;
+}
+
+.hidden {
+  display: none;
+}
+
+.container {
+  position: relative;
+  width: 100%;
+  margin: 0 auto;
+  padding-left: 40px;
+  padding-right: 40px;
+}
+
+.button {
+  text-align: center;
+  white-space: nowrap;
+  border: none;
+  padding: 0.625rem 1.5625rem;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  background-color: #f2f2f2;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.button--current,
+.button:focus,
+.button:hover {
+  background-color: #23a3ff;
+  outline: none;
+  color: #ffffff;
+}
+
+.button--current:hover,
+.button--current:focus {
+  opacity: 0.6;
+}
+
+.button--task {
+  font-size: 0.875rem;
+  line-height: 1.25rem;
+  padding: 0.1875rem 0.9375rem 0.25rem;
+}
+
+.button--new-task {
+  position: relative;
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  border-radius: 50%;
+  background-color: #ffffff;
+  width: 3.75rem;
+  height: 3.75rem;
+  box-shadow: 0 0.625rem 2.5rem rgba(0, 0, 0, 0.1);
+}
+
+.button--new-task svg,
+.button--new-task svg {
+  fill: #23a3ff;
+}
+
+.button--new-task:focus svg,
+.button--new-task:hover svg {
+  fill: #ffffff;
+}
+
+.edit .button--new-task,
+.show-modal .button--new-task {
+  display: none;
+}
+
+.button--fixed {
+  position: fixed;
+  right: 2.5rem;
+  bottom: 2.5rem;
+}
+
+.button--cancel {
+  display: none;
+}
+
+.edit .button--edit {
+  display: none;
+}
+
+.edit .button--cancel {
+  display: block;
+}
+
+.button--modal {
+  max-width: 137px;
+  border-radius: 10px;
+  padding: 0.625rem 2.125rem;
+}
+
+.header-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 3.75rem;
+  padding-bottom: 3.0625rem;
+}
+
+.heading {
+  padding: 0;
+  margin: 0;
+}
+
+.heading--h1 {
+  font-weight: 800;
+  font-size: 1.75rem;
+  line-height: 2.5625rem;
+}
+
+.todo__list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  min-height: 35.25rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.todo__item {
+  position: relative;
+  padding-bottom: 1.875rem;
+  padding-left: 2.25rem;
+}
+
+.todo__label {
+  position: relative;
+  cursor: pointer;
+  font-size: 1.125rem;
+  line-height: 1.375rem;
+  letter-spacing: 0.01em;
+}
+
+.checked .todo__span {
+  opacity: 0.6;
+}
+
+.todo__checkbox {
+  position: absolute;
+  width: 1.375rem;
+  height: 1.375rem;
+  left: -2.25rem;
+  top: 0;
+  border: 0.125rem solid #d9d9d9;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.todo__check-input:checked + .todo__checkbox::before {
+  position: absolute;
+  content: "";
+  width: 0.75rem;
+  height: 0.75rem;
+  background-color: #23a3ff;
+  border-radius: 50%;
+  left: 0.1875rem;
+  top: 0.1875rem;
+}
+
+.edit .todo__checkbox,
+.edit .todo__checkbox::before {
+  display: none;
+}
+
+.todo__action {
+  display: none;
+}
+
+.edit .todo__action {
+  padding: 0;
+  border: none;
+  font: inherit;
+  color: inherit;
+  display: block;
+  position: absolute;
+  width: 1.375rem;
+  height: 1.375rem;
+  left: 0;
+  top: 0;
+  border-radius: 50%;
+  background: #e85c5c url("../img/delete-task.svg") no-repeat center;
+  outline: none;
+}
+
+.edit .todo__action:hover,
+.edit .todo__action:focus {
+  opacity: 0.6;
+}
+
+.edit .checked .todo__span {
+  opacity: 1;
+}
+
+.edit .todo__item:hover .todo__span,
+.edit .todo__item:focus .todo__span {
+  opacity: 0.6;
+}
+
+.modal {
+  position: fixed;
+  top: 8.25rem;
+  left: 0;
+  right: 0;
+  box-shadow: 0 0 40px rgba(0, 0, 0, 0.1);
+  border-radius: 40px 40px 0 0;
+  background-color: #ffffff;
+  z-index: 1;
+  min-height: 42.5rem;
+}
+
+.modal__wrapper {
+  padding-top: 2.625rem;
+  padding-bottom: 2.625rem;
+}
+
+.modal--add {
+  display: none;
+}
+
+.show-modal--add .modal--add {
+  display: block;
+  animation: bounce 0.5s;
+}
+
+.form .form__row {
+  display: flex;
+}
+
+.modal input,
+.modal textarea {
+  width: 100%;
+  min-height: 10rem;
+  border: 2px solid #e6e6e6;
+  border-radius: 10px;
+  padding: 1.25rem;
+  margin-bottom: 1.875rem;
+  outline: none;
+  color: #333333;
+  line-height: 1.375rem;
+}
+
+.modal--add textarea {
+  min-height: 10rem;
+}
+
+.form textarea::placeholder {
+  line-height: 1.375rem;
+  color: #999999;
+}
+
+.form__row--buttons {
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal--edit {
+  display: none;
+}
+
+.modal--edit input {
+  min-height: 3.125rem;
+  height: 3.125rem;
+  padding: 0.875rem 1.25rem;
+}
+
+.modal-backdrop {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+}
+
+.show-modal .modal-backdrop {
+  display: block;
+}
+
+.show-modal--edit .modal--edit {
+  display: block;
+  animation: bounce 0.5s;
+}
+
+@keyframes bounce {
+  0% {
+    transform: translateY(-8.25rem);
+  }
+
+  100% {
+    transform: translateY(0);
+  }
+}
+
+@media (min-width: 1280px) {
+  .container {
+    max-width: 1280px;
+  }
+
+  .modal {
+    max-width: 30.625rem;
+    left: 50%;
+    margin-left: -15.3125rem;
+    min-height: 0;
+    border-radius: 40px;
+  }
+}
+
+@media (min-width: 1440px) {
+  .button--fixed {
+    left: calc(100vw - 11rem);
+  }
+}
+
+@media (min-width: 1920px) {
+  .button--fixed {
+    left: calc(100vw - 26rem);
+  }
+}
